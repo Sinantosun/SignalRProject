@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRApi", "SignalRApi\SignalRApi.csproj", "{CE0F12CD-5610-47C2-8137-00CD1982B419}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRApi", "SignalRApi\SignalRApi.csproj", "{CE0F12CD-5610-47C2-8137-00CD1982B419}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRWebUI", "SignalRWebUI\SignalRWebUI.csproj", "{3E75037B-2F33-443B-A08E-4DE87875F572}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRWebUI", "SignalRWebUI\SignalRWebUI.csproj", "{3E75037B-2F33-443B-A08E-4DE87875F572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.EntityLayer", "SignalR.EntitiyLayer\SignalR.EntityLayer.csproj", "{BA39E02B-44FE-4EF3-BF5C-4B76141C2260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalR.EntityLayer", "SignalR.EntitiyLayer\SignalR.EntityLayer.csproj", "{BA39E02B-44FE-4EF3-BF5C-4B76141C2260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.DataAccsessLayer", "SignalR.DataAccsessLayer\SignalR.DataAccsessLayer.csproj", "{48E00A36-7B9C-4772-ADFB-EB94373ABD7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalR.DataAccsessLayer", "SignalR.DataAccsessLayer\SignalR.DataAccsessLayer.csproj", "{48E00A36-7B9C-4772-ADFB-EB94373ABD7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.DtoLayer", "SignalR.DtoLayer\SignalR.DtoLayer.csproj", "{969AFB03-AAA1-4CC2-90A4-7FB1F87070D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalR.DtoLayer", "SignalR.DtoLayer\SignalR.DtoLayer.csproj", "{969AFB03-AAA1-4CC2-90A4-7FB1F87070D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.BusinessLayer", "SignalR.BusinessLayer\SignalR.BusinessLayer.csproj", "{1B8CFC51-E625-4BAA-BE46-00DC87C73980}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalR.BusinessLayer", "SignalR.BusinessLayer\SignalR.BusinessLayer.csproj", "{1B8CFC51-E625-4BAA-BE46-00DC87C73980}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
