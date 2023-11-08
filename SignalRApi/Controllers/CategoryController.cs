@@ -30,12 +30,12 @@ namespace SignalRApi.Controllers
         {
             _categoryService.TInsert(new Category()
             {
-                CategoryName=createCategoryDto.CategoryName,
-                Status=true,
+                CategoryName = createCategoryDto.CategoryName,
+                Status = true,
             });
             return Ok("Kategori Eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteCategory(int id)
         {
             var value = _categoryService.TgetById(id);
@@ -43,7 +43,7 @@ namespace SignalRApi.Controllers
             return Ok("Kategori Silindi.");
 
         }
-        [HttpGet("GetCategoryWithId")]
+        [HttpGet("{id}")]
         public IActionResult GetCategoryWithId(int id)
         {
             var values = _categoryService.TgetById(id);
@@ -54,12 +54,13 @@ namespace SignalRApi.Controllers
         {
             _categoryService.TUpdate(new Category()
             {
-                CategoryID=updateCategoryDto.CategoryID,
+                CategoryID = updateCategoryDto.CategoryID,
                 CategoryName = updateCategoryDto.CategoryName,
-                Status=updateCategoryDto.Status,
+                Status = updateCategoryDto.Status,
             });
             return Ok("Kategori Başarıyla Guncellendi.");
         }
+
 
 
     }
