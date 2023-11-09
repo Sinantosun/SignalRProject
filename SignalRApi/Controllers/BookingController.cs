@@ -50,13 +50,13 @@ namespace SignalRApi.Controllers
             _IBookingService.TUpdate(booking);
             return Ok("Guncelleme İşlemi Başarıyla Gerçekleşti.");
         }
-        [HttpGet("BookingGetById")]
+        [HttpGet("{id}")]
         public IActionResult BookingGetById(int id)
         {
             var values = _IBookingService.TgetById(id);
             return Ok(values);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteBooking(int id)
         {
             var removeId = _IBookingService.TgetById(id);
