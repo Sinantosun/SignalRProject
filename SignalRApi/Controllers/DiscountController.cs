@@ -37,7 +37,7 @@ namespace SignalRApi.Controllers
             });
             return Ok("İndirim Eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteDiscount(int id)
         {
             var value = _discountService.TgetById(id);
@@ -45,7 +45,7 @@ namespace SignalRApi.Controllers
             return Ok("İndirim Silindi.");
 
         }
-        [HttpGet("GetDiscountWithId")]
+        [HttpGet("{id}")]
         public IActionResult GetDiscountWithId(int id)
         {
             var values = _discountService.TgetById(id);

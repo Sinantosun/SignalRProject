@@ -1,0 +1,48 @@
+﻿@model UpdateDiscountDto
+@{
+    ViewData["Title"] = "CreateCategory";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">İndirim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni İndirim Ekleme Sayfası</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">Başlık</label>
+                                <input type="text" class="form-control" asp-for="Title" id="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="Amout">İndirim Miktarı</label>
+                                <input type="text" class="form-control" asp-for="Amout" id="Amout">
+                            </div>
+                            <div class="form-group">
+                                <label for="ImageUrl">İndirim Görseli</label>
+                                <input type="text" class="form-control" asp-for="ImageUrl" id="ImageUrl">
+                            </div>
+                            <div class="form-group">
+                                <label for="Description">İndirim Açıklaması</label>
+                                <input type="text" class="form-control" asp-for="Description" id="Description">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" asp-for="DiscountID">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-success">İndirim Oluştur</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
