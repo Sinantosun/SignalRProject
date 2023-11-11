@@ -87,5 +87,10 @@ namespace SignalRApi.Controllers
             });
             return Ok("Ürün Başarıyla Guncellendi.");
         }
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {
+            return Ok(_productService.TProductCount());
+        }
     }
 }
