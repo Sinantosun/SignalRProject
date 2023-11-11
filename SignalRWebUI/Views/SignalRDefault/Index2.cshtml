@@ -13,25 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <script type="text/javascript">
-                        $(document).ready(() => {
-                            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7189/SignalRHub").build();
-
-                            $("#connstatus").text(connection.state);
-
-                            connection.start().then(() => {
-                                $("#connstatus").text(connection.state);
-                                setInterval(() => {
-                                    connection.invoke("SendCategoryCount");
-                                },1000)
-                              
-                            }).catch((err) => { console.log(err) });
-
-                            connection.on("ReciveCategoryCount", (value) => {
-                                $("#categorycount").text(value);
-                            });
-                        })
-                    </script>
+       
                 </div>
             </div>
         </div>

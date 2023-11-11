@@ -23,5 +23,10 @@ namespace SignalR.DataAccsessLayer.Concrete
         public DbSet<Product> Products { get; set; }
         public DbSet<SocailMedia> SocailMedias { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<MoneyCase> moneyCases { get; set; }
+        public DbSet<MenuTable> menuTables { get; set; }
     }
 }
