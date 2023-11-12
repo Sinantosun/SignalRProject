@@ -9,26 +9,64 @@ namespace SignalRApi.Hubs
 
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
-        public SignalRHub(ICategoryService categoryService, IProductService productService)
+        private readonly IOrderService _orderService;
+        private readonly IMoneyCaseService _moneyCaseService;
+        private readonly IMenuTableService _menuTableService;
+        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService)
         {
             _categoryService = categoryService;
             _productService = productService;
+            _orderService = orderService;
+            _moneyCaseService = moneyCaseService;
+            _menuTableService = menuTableService;
         }
 
-        public async Task SendCategoryCount()
+        public async Task SendIstastisc()
         {
-            var value = _categoryService.TCategoryCount();
-            await Clients.All.SendAsync("ReciveCategoryCount", value);
-        }
-        public async Task SendProductCount()
-        {
-            var value2 = _productService.TProductCount();
-            await Clients.All.SendAsync("ReciveProductCount", value2);
-        }
-        public async Task ActiveCategoryCount()
-        {
-            var value3 = _categoryService.TActiveCategoryCount();
-            await Clients.All.SendAsync("ReciveActiveCategoryCount", value3);
+            var ReciveCategoryCount = _categoryService.TCategoryCount();
+            await Clients.All.SendAsync("ReciveCategoryCount", ReciveCategoryCount);
+
+            var ReciveProductCount = _productService.TProductCount();
+            await Clients.All.SendAsync("ReciveProductCount", ReciveProductCount);
+
+            var ReciveActiveCategoryCount = _categoryService.TActiveCategoryCount();
+            await Clients.All.SendAsync("ReciveActiveCategoryCount", ReciveActiveCategoryCount);
+
+            var RecivePassiveCategoryCount = _categoryService.TPassiveCategoryCount();
+            await Clients.All.SendAsync("RecivePassiveCategoryCount", RecivePassiveCategoryCount);
+
+            var HamburgerCount = _productService.TProductCountByCategoryNameHamburger();
+            await Clients.All.SendAsync("ReciveHamburgerCount", HamburgerCount);
+
+            var DrinkCount = _productService.TProductCountByCategoryNameDrink();//
+            await Clients.All.SendAsync("ReciveDrinkCount", HamburgerCount);
+
+            var AvgPrdouct = _productService.TProductPriceAvg();
+            await Clients.All.SendAsync("ReciveAvgProduct", AvgPrdouct);
+
+            var ExpensiveProduct = _productService.TProductNamePriceByMax();
+            await Clients.All.SendAsync("ReciveExpensivePrdouct", ExpensiveProduct);
+
+            var ChepperProduct = _productService.TProductNameMinPriceByMax();
+            await Clients.All.SendAsync("ReciveCheaperPrdouct", ChepperProduct);
+
+            var HamburgerPrice = _productService.TAvgProductPriceByHambuger();
+            await Clients.All.SendAsync("ReciveHamburgerPrice", HamburgerPrice);
+
+            var TotalOrder = _orderService.TTotalOrderCount();
+            await Clients.All.SendAsync("ReciveTotelOrder", TotalOrder);
+
+            var ActiveOrder = _orderService.TActiveOrderCount();
+            await Clients.All.SendAsync("ReciveActiveOrder", ActiveOrder);
+
+            var LastOrder = _orderService.TLastOrderPrice();
+            await Clients.All.SendAsync("ReciveLastOrder", LastOrder);
+
+            var MoneyCaseAmount = _moneyCaseService.TTotalMoneyCaseAmount();
+            await Clients.All.SendAsync("ReciveMoneyCase", MoneyCaseAmount);
+
+            var TableCount = _menuTableService.TMenuTableCount();
+            await Clients.All.SendAsync("ReciveTableCount", TableCount);
         }
     }
 }

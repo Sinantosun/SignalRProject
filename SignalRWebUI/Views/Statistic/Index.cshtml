@@ -19,9 +19,7 @@
                 connection.start().then(() => {
                     $("#connstatus").text(connection.state);
                     setInterval(() => {
-                        connection.invoke("SendCategoryCount");
-                        connection.invoke("SendProductCount");
-                        connection.invoke("ActiveCategoryCount");
+                        connection.invoke("SendIstastisc");
                     }, 1000)
 
                 }).catch((err) => { console.log(err) });
@@ -29,11 +27,58 @@
                 connection.on("ReciveCategoryCount", (value) => {
                     $("#categorycount").text(value);
                 });
-                connection.on("ReciveProductCount", (value2) => {
-                    $("#productcount").text(value2);
+                connection.on("ReciveProductCount", (value) => {
+                    $("#productcount").text(value);
                 });
-                connection.on("ReciveActiveCategoryCount", (value2) => {
-                    $("#ActiveCategoryCount").text(value2);
+                connection.on("ReciveActiveCategoryCount", (value) => {
+                    $("#ActiveCategoryCount").text(value);
+                });
+                connection.on("RecivePassiveCategoryCount", (value) => {
+                    $("#PassiveCategoryCount").text(value);
+                });
+
+                connection.on("ReciveHamburgerCount", (value) => {
+                    $("#HamburgerCount").text(value);
+                });
+
+                connection.on("ReciveDrinkCount", (value) => {
+                    $("#DrinkCount").text(value);
+                });
+
+                connection.on("ReciveAvgProduct", (value) => {
+                    $("#AvgCount").text(value);
+                });
+
+                connection.on("ReciveExpensivePrdouct", (value) => {
+                    $("#ExpensiveProduct").text(value);
+                });
+
+                connection.on("ReciveCheaperPrdouct", (value) => {
+                    $("#CheaperProduct").text(value);
+                });
+
+                connection.on("ReciveHamburgerPrice", (value) => {
+                    $("#HamburgerPrice").text(value);
+                });
+
+                connection.on("ReciveTotelOrder", (value) => {
+                    $("#TotalPrice").text(value);
+                });
+
+                connection.on("ReciveActiveOrder", (value) => {
+                    $("#ActiveOrder").text(value);
+                });
+
+                connection.on("ReciveLastOrder", (value) => {
+                    $("#LastOrder").text(value);
+                });
+
+                connection.on("ReciveMoneyCase", (value) => {
+                    $("#MoneyCase").text(value);
+                });
+
+                connection.on("ReciveTableCount", (value) => {
+                    $("#TableCount").text(value);
                 });
             })
         </script>
@@ -88,8 +133,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Aktif Kategori Sayısı</p>
-                                    <h4 class="card-title" id="ActiveCategoryCount">1303</h4>
+                                    <p class="card-category">Aktif Kategori</p>
+                                    <h4 class="card-title" id="ActiveCategoryCount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -107,8 +152,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Order</p>
-                                    <h4 class="card-title">576</h4>
+                                    <p class="card-category">Pasif Kategori</p>
+                                    <h4 class="card-title" id="PassiveCategoryCount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -128,8 +173,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Visitors</p>
-                                    <h4 class="card-title">1,294</h4>
+                                    <p class="card-category">Hamurger</p>
+                                    <h4 class="card-title" id="HamburgerCount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -147,8 +192,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Sales</p>
-                                    <h4 class="card-title">$ 1,345</h4>
+                                    <p class="card-category">İçecek Sayısı</p>
+                                    <h4 class="card-title" id="DrinkCount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -166,8 +211,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Subscribers</p>
-                                    <h4 class="card-title">1303</h4>
+                                    <p class="card-category">Ortalama Fiyat</p>
+                                    <h4 class="card-title" id="AvgCount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -185,8 +230,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Order</p>
-                                    <h4 class="card-title">576</h4>
+                                    <p class="card-category">En Pahlı Ürün</p>
+                                    <h4 class="card-title" id="ExpensiveProduct"></h4>
                                 </div>
                             </div>
                         </div>
@@ -206,8 +251,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Visitors</p>
-                                    <h4 class="card-title">1,294</h4>
+                                    <p class="card-category">En Ucuz Ürün</p>
+                                    <h4 class="card-title" id="CheaperProduct"></h4>
                                 </div>
                             </div>
                         </div>
@@ -225,8 +270,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Sales</p>
-                                    <h4 class="card-title">$ 1,345</h4>
+                                    <p class="card-category">Hamburger Fiyat</p>
+                                    <h4 class="card-title" id="HamburgerPrice"></h4>
                                 </div>
                             </div>
                         </div>
@@ -244,8 +289,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Subscribers</p>
-                                    <h4 class="card-title">1303</h4>
+                                    <p class="card-category">Toplam Sipariş</p>
+                                    <h4 class="card-title" id="TotalPrice"></h4>
                                 </div>
                             </div>
                         </div>
@@ -263,8 +308,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Order</p>
-                                    <h4 class="card-title">576</h4>
+                                    <p class="card-category">Aktif Sipariş</p>
+                                    <h4 class="card-title" id="ActiveOrder"></h4>
                                 </div>
                             </div>
                         </div>
@@ -284,8 +329,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Visitors</p>
-                                    <h4 class="card-title">1,294</h4>
+                                    <p class="card-category">Son Sipariş</p>
+                                    <h4 class="card-title" id="LastOrder"></h4>
                                 </div>
                             </div>
                         </div>
@@ -303,8 +348,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Sales</p>
-                                    <h4 class="card-title">$ 1,345</h4>
+                                    <p class="card-category">Kasdaki Tutar</p>
+                                    <h4 class="card-title" id="MoneyCase"></h4>
                                 </div>
                             </div>
                         </div>
@@ -322,8 +367,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Subscribers</p>
-                                    <h4 class="card-title">1303</h4>
+                                    <p class="card-category">Bügünkü Kazanç</p>
+                                    <h4 class="card-title" id="TodayPrift">350₺</h4>
                                 </div>
                             </div>
                         </div>
@@ -341,8 +386,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Order</p>
-                                    <h4 class="card-title">576</h4>
+                                    <p class="card-category">Masa Sayısı</p>
+                                    <h4 class="card-title" id="TableCount"></h4>
                                 </div>
                             </div>
                         </div>
