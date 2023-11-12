@@ -42,7 +42,7 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("ReciveDrinkCount", HamburgerCount);
 
             var AvgPrdouct = _productService.TProductPriceAvg();
-            await Clients.All.SendAsync("ReciveAvgProduct", AvgPrdouct);
+            await Clients.All.SendAsync("ReciveAvgProduct", AvgPrdouct.ToString("0.00") + "₺");
 
             var ExpensiveProduct = _productService.TProductNamePriceByMax();
             await Clients.All.SendAsync("ReciveExpensivePrdouct", ExpensiveProduct);
@@ -65,8 +65,24 @@ namespace SignalRApi.Hubs
             var MoneyCaseAmount = _moneyCaseService.TTotalMoneyCaseAmount();
             await Clients.All.SendAsync("ReciveMoneyCase", MoneyCaseAmount);
 
+            var TodayProfit = _orderService.TTodayTotalPrice();
+            await Clients.All.SendAsync("ReciveTodayProfit", TodayProfit);
+
             var TableCount = _menuTableService.TMenuTableCount();
             await Clients.All.SendAsync("ReciveTableCount", TableCount);
         }
+        public async Task SendProgress()
+        {
+            var ReciveMoneyCase = _moneyCaseService.TTotalMoneyCaseAmount();
+            await Clients.All.SendAsync("ReciveMoneyCase", ReciveMoneyCase.ToString("0.00" + "₺"));
+
+            var ActiveOrderCount = _orderService.TActiveOrderCount();
+            await Clients.All.SendAsync("ReciveActiveOrderCount", ActiveOrderCount);
+
+            var MenuActive = _menuTableService.TMenuTableCount();
+            await Clients.All.SendAsync("ReciveMenuActive", MenuActive);
+        }
+
+
     }
 }

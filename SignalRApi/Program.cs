@@ -6,6 +6,7 @@ using SignalR.DataAccsessLayer.EntityFramework;
 using SignalR.EntityLayer.Entities;
 using SignalRApi.Hubs;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(opt =>
@@ -61,6 +62,15 @@ builder.Services.AddScoped<IMoneyCaseDal, EFMoneyCaseDal>();
 
 builder.Services.AddScoped<IMenuTableService, MenuTableManager>();
 builder.Services.AddScoped<IMenuTableDal, EFMenuTableDal>();
+
+builder.Services.AddScoped<ISliderService, SliderManager>();
+builder.Services.AddScoped<ISliderDal, EFSliderDal>();
+
+builder.Services.AddScoped<IBasketService, BasketManager>();
+builder.Services.AddScoped<IBasketDal, EFBasketDal>();
+
+builder.Services.AddControllersWithViews().AddJsonOptions(opts =>
+    opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 
 builder.Services.AddControllers();

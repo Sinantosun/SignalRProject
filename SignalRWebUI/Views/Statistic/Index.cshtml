@@ -77,6 +77,10 @@
                     $("#MoneyCase").text(value);
                 });
 
+                connection.on("ReciveTodayProfit", (value) => {
+                    $("#TodayProfit").text(value);
+                });
+
                 connection.on("ReciveTableCount", (value) => {
                     $("#TableCount").text(value);
                 });
@@ -368,7 +372,7 @@
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
                                     <p class="card-category">Bügünkü Kazanç</p>
-                                    <h4 class="card-title" id="TodayPrift">350₺</h4>
+                                    <h4 class="card-title" id="TodayProfit">350₺</h4>
                                 </div>
                             </div>
                         </div>
