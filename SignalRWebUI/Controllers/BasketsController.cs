@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SignalRWebUI.Dtos.BasketDtos;
+using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
@@ -16,7 +17,7 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responMessage = await client.GetAsync("https://localhost:7189/api/Basket?id=4");
+            var responMessage = await client.GetAsync("https://localhost:7189/api/Basket/BasketListByMenuTableWithProductsName?id=4");
             if (responMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responMessage.Content.ReadAsStringAsync();
@@ -25,5 +26,17 @@ namespace SignalRWebUI.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> DeleteBasket(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:7189/api/Basket/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return NoContent();
+        }
+
+
     }
 }

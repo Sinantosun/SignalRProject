@@ -2,6 +2,10 @@
 @{
     Layout = null;
     int count = 0;
+    decimal basketTotalPrice = 0;
+    decimal basketTotatlPriceWithTax = 0;
+    decimal tax = 0;
+    decimal totalPrice = 0;
 }
 
 <!DOCTYPE html>
@@ -42,22 +46,62 @@
                     </thead>
                     @foreach (var item in Model)
                     {
+                        totalPrice = item.Count * item.ProductPrice;
+                        basketTotalPrice = Model.Sum(x => x.ProductPrice);
+                        tax = basketTotalPrice / 100 * 10;
+                        basketTotatlPriceWithTax = basketTotalPrice + basketTotalPrice + tax;
+
+
                         count++;
                         <tbody class="align-middle">
                             <tr>
                                 <td class="align-middle">@count</td>
-                                <td class="align-middle">@item.ProductID</td>
+                                <td class="align-middle">@item.ProductName</td>
                                 <td class="align-middle">@item.Count</td>
                                 <td class="align-middle">@item.ProductPrice</td>
-                                <td class="align-middle">@item.TotalPrice</td>
-                                <td class="align-middle btn-delete"><button data-basketid="@item.BasketID" id="btndeletebasketid" class="btn btn-sm btn-danger"><i class="fa fa-times"> </i> </button></td>
+                                <td class="align-middle">@totalPrice.ToString("C2")</td>
+                                <td class="align-middle btn-delete"><a href="/Baskets/DeleteBasket/@item.BasketID" data-basketid="@item.BasketID" id="btndeletebasketid" class="btn btn-sm btn-danger"><i class="fa fa-times"> </i> </a></td>
                             </tr>
                         </tbody>
                     }
-
                 </table>
             </div>
+            <div class="col-log-4">
+                <form method="post">
+                    <div class="input-group">
+                        <input type="text" id="couponcode" class="form-control border-1 p-4" placeholder="Kupon Kodunuz" />
+                        <div>
+                            <a style="height:48px; padding-top:11px; margin-left:5px" class="btn btn-warning" id="btncouponcode">Kuponu Uygula</a>
+                        </div>
+                    </div>
+                </form>
+                <br />
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-warning pr-3">Sepet Özetiniz</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div id="container" class="border-bottom pb-2">
+                        <div class="d-flex justify-content-between mb-6">
+                            <h6>Toplam Tutar</h6>
+                            <h6><span id="totalprice">@basketTotalPrice</span>₺</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Kdv Oranı</h6>
+                            <h6 id="kdv" class="font-weight-medium">@tax ₺</h6>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Toplam Tutar:</h5>
+                            <h5><span id="totalpricewithkdv">@basketTotatlPriceWithTax</span>₺</h5>
+                        </div>
+                        <br />
+                        <button id="btncheck" class="btn btn-block btn btn-warning font-weight-bold my-3"> Siparişi Tamamla</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
     </div>
     @await Component.InvokeAsync("_UIFooterComponentPartial")
 

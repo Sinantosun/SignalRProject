@@ -4,85 +4,111 @@ using SignalR.DataAccsessLayer.Concrete;
 
 namespace SignalRApi.Hubs
 {
-    public class SignalRHub : Hub
-    {
+	public class SignalRHub : Hub
+	{
 
-        private readonly ICategoryService _categoryService;
-        private readonly IProductService _productService;
-        private readonly IOrderService _orderService;
-        private readonly IMoneyCaseService _moneyCaseService;
-        private readonly IMenuTableService _menuTableService;
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService)
-        {
-            _categoryService = categoryService;
-            _productService = productService;
-            _orderService = orderService;
-            _moneyCaseService = moneyCaseService;
-            _menuTableService = menuTableService;
-        }
+		private readonly ICategoryService _categoryService;
+		private readonly IProductService _productService;
+		private readonly IOrderService _orderService;
+		private readonly IMoneyCaseService _moneyCaseService;
+		private readonly IMenuTableService _menuTableService;
+		private readonly IBookingService _bookingService;
+		private readonly INotificationService _notificationService;
 
-        public async Task SendIstastisc()
-        {
-            var ReciveCategoryCount = _categoryService.TCategoryCount();
-            await Clients.All.SendAsync("ReciveCategoryCount", ReciveCategoryCount);
+		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INotificationService notificationService)
+		{
+			_categoryService = categoryService;
+			_productService = productService;
+			_orderService = orderService;
+			_moneyCaseService = moneyCaseService;
+			_menuTableService = menuTableService;
+			_bookingService = bookingService;
+			_notificationService = notificationService;
+		}
 
-            var ReciveProductCount = _productService.TProductCount();
-            await Clients.All.SendAsync("ReciveProductCount", ReciveProductCount);
+		public async Task SendIstastisc()
+		{
+			var ReciveCategoryCount = _categoryService.TCategoryCount();
+			await Clients.All.SendAsync("ReciveCategoryCount", ReciveCategoryCount);
 
-            var ReciveActiveCategoryCount = _categoryService.TActiveCategoryCount();
-            await Clients.All.SendAsync("ReciveActiveCategoryCount", ReciveActiveCategoryCount);
+			var ReciveProductCount = _productService.TProductCount();
+			await Clients.All.SendAsync("ReciveProductCount", ReciveProductCount);
 
-            var RecivePassiveCategoryCount = _categoryService.TPassiveCategoryCount();
-            await Clients.All.SendAsync("RecivePassiveCategoryCount", RecivePassiveCategoryCount);
+			var ReciveActiveCategoryCount = _categoryService.TActiveCategoryCount();
+			await Clients.All.SendAsync("ReciveActiveCategoryCount", ReciveActiveCategoryCount);
 
-            var HamburgerCount = _productService.TProductCountByCategoryNameHamburger();
-            await Clients.All.SendAsync("ReciveHamburgerCount", HamburgerCount);
+			var RecivePassiveCategoryCount = _categoryService.TPassiveCategoryCount();
+			await Clients.All.SendAsync("RecivePassiveCategoryCount", RecivePassiveCategoryCount);
 
-            var DrinkCount = _productService.TProductCountByCategoryNameDrink();//
-            await Clients.All.SendAsync("ReciveDrinkCount", HamburgerCount);
+			var HamburgerCount = _productService.TProductCountByCategoryNameHamburger();
+			await Clients.All.SendAsync("ReciveHamburgerCount", HamburgerCount);
 
-            var AvgPrdouct = _productService.TProductPriceAvg();
-            await Clients.All.SendAsync("ReciveAvgProduct", AvgPrdouct.ToString("0.00") + "₺");
+			var DrinkCount = _productService.TProductCountByCategoryNameDrink();//
+			await Clients.All.SendAsync("ReciveDrinkCount", HamburgerCount);
 
-            var ExpensiveProduct = _productService.TProductNamePriceByMax();
-            await Clients.All.SendAsync("ReciveExpensivePrdouct", ExpensiveProduct);
+			var AvgPrdouct = _productService.TProductPriceAvg();
+			await Clients.All.SendAsync("ReciveAvgProduct", AvgPrdouct.ToString("0.00") + "₺");
 
-            var ChepperProduct = _productService.TProductNameMinPriceByMax();
-            await Clients.All.SendAsync("ReciveCheaperPrdouct", ChepperProduct);
+			var ExpensiveProduct = _productService.TProductNamePriceByMax();
+			await Clients.All.SendAsync("ReciveExpensivePrdouct", ExpensiveProduct);
 
-            var HamburgerPrice = _productService.TAvgProductPriceByHambuger();
-            await Clients.All.SendAsync("ReciveHamburgerPrice", HamburgerPrice);
+			var ChepperProduct = _productService.TProductNameMinPriceByMax();
+			await Clients.All.SendAsync("ReciveCheaperPrdouct", ChepperProduct);
 
-            var TotalOrder = _orderService.TTotalOrderCount();
-            await Clients.All.SendAsync("ReciveTotelOrder", TotalOrder);
+			var HamburgerPrice = _productService.TAvgProductPriceByHambuger();
+			await Clients.All.SendAsync("ReciveHamburgerPrice", HamburgerPrice);
 
-            var ActiveOrder = _orderService.TActiveOrderCount();
-            await Clients.All.SendAsync("ReciveActiveOrder", ActiveOrder);
+			var TotalOrder = _orderService.TTotalOrderCount();
+			await Clients.All.SendAsync("ReciveTotelOrder", TotalOrder);
 
-            var LastOrder = _orderService.TLastOrderPrice();
-            await Clients.All.SendAsync("ReciveLastOrder", LastOrder);
+			var ActiveOrder = _orderService.TActiveOrderCount();
+			await Clients.All.SendAsync("ReciveActiveOrder", ActiveOrder);
 
-            var MoneyCaseAmount = _moneyCaseService.TTotalMoneyCaseAmount();
-            await Clients.All.SendAsync("ReciveMoneyCase", MoneyCaseAmount);
+			var LastOrder = _orderService.TLastOrderPrice();
+			await Clients.All.SendAsync("ReciveLastOrder", LastOrder);
 
-            var TodayProfit = _orderService.TTodayTotalPrice();
-            await Clients.All.SendAsync("ReciveTodayProfit", TodayProfit);
+			var MoneyCaseAmount = _moneyCaseService.TTotalMoneyCaseAmount();
+			await Clients.All.SendAsync("ReciveMoneyCase", MoneyCaseAmount);
 
-            var TableCount = _menuTableService.TMenuTableCount();
-            await Clients.All.SendAsync("ReciveTableCount", TableCount);
-        }
-        public async Task SendProgress()
-        {
-            var ReciveMoneyCase = _moneyCaseService.TTotalMoneyCaseAmount();
-            await Clients.All.SendAsync("ReciveMoneyCase", ReciveMoneyCase.ToString("0.00" + "₺"));
+			var TodayProfit = _orderService.TTodayTotalPrice();
+			await Clients.All.SendAsync("ReciveTodayProfit", TodayProfit);
 
-            var ActiveOrderCount = _orderService.TActiveOrderCount();
-            await Clients.All.SendAsync("ReciveActiveOrderCount", ActiveOrderCount);
+			var TableCount = _menuTableService.TMenuTableCount();
+			await Clients.All.SendAsync("ReciveTableCount", TableCount);
+		}
+		public async Task SendProgress()
+		{
+			var ReciveMoneyCase = _moneyCaseService.TTotalMoneyCaseAmount();
+			await Clients.All.SendAsync("ReciveMoneyCase", ReciveMoneyCase.ToString("0.00" + "₺"));
 
-            var MenuActive = _menuTableService.TMenuTableCount();
-            await Clients.All.SendAsync("ReciveMenuActive", MenuActive);
-        }
+			var ActiveOrderCount = _orderService.TActiveOrderCount();
+			await Clients.All.SendAsync("ReciveActiveOrderCount", ActiveOrderCount);
+
+			var MenuActive = _menuTableService.TMenuTableCount();
+			await Clients.All.SendAsync("ReciveMenuActive", MenuActive);
+		}
+
+		public async Task GetBookingList()
+		{
+			var values = _bookingService.TGetList();
+			await Clients.All.SendAsync("ReciveBookingList", values);
+		}
+
+		public async Task SendNotification()
+		{
+			var ActiveNotificationCount = _notificationService.TNotifactionCountByStatusFalse();
+			await Clients.All.SendAsync("ReciveActiveNotification", ActiveNotificationCount);
 
 
-    }
+			var ActiveNotificationList = _notificationService.TgetAllNotificationActive();
+			await Clients.All.SendAsync("ReciveActiveList", ActiveNotificationList);
+
+		}
+
+		public async Task GetMenuTablesStatus()
+		{
+			var value = _menuTableService.TGetList();
+			await Clients.All.SendAsync("ReciveMenuTableStatus", value);
+		}
+	}
 }

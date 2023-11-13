@@ -1,0 +1,60 @@
+﻿@model List<ResultNotificationDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Bildirim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Bildirim Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Bildirimler İle İlgili İşlemleri Aşağıdan Gerçekleştirebilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Açıklama</th>
+                                    <th scope="col">Tarih</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                    <th colspan="2" class="text-center" scope="col">Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.NotificationID</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Date</td>
+                                        <td>@item.Status</td>
+                                        <td><a class="btn btn-outline-danger" href="/Notifications/DeleteNotifications/@item.NotificationID">Sil</a></td>
+                                        <td><a class="btn btn-outline-success" href="/Notifications/UpdateNotifications/@item.NotificationID">Güncelle</a></td>
+
+
+                                        <td><a class="btn btn-outline-secondary" href="/Notifications/UpdateNotificationToTrue/@item.NotificationID">Okundu</a></td>
+
+
+                                        <td><a class="btn btn-outline-secondary" href="/Notifications/UpdateNotificationToFalse/@item.NotificationID">Okunmadı</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <a href="/Notifications/CreateNotifications" class="btn btn-outline-primary">Yeni Bildirim Girişi</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
