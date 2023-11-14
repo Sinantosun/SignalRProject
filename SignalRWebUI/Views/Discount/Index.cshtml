@@ -15,31 +15,33 @@
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                           İndirim İle İlgili İşlemleri Aşağıdan Gerçekleştirebilirsiniz.
+                            İndirim İle İlgili İşlemleri Aşağıdan Gerçekleştirebilirsiniz.
+                            .<br /><br />
+                            <strong>Not:</strong><i> Ana Sayfa tema bütünlüğü için 2 adet indirimin aktif olması gerekmektedir.</i>
                         </div>
-                        <table class="table mt-3">
+                        <table class="table mt-3 text-center">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Adress</th>
-                                    <th scope="col">Telefon No</th>
-                                    <th scope="col">E - Mail</th>
-                                    <th scope="col">Alt Açıklama</th>
-                                    <th scope="col">Sil</th>
-                                    <th scope="col">Güncelle</th>
+                                    <th scope="col">İndirim Oranı</th>
+                                    <th scope="col">Ürün Görseli</th>
+                                    <th scope="col">Yayın Durumu</th>
+                                    <th colspan="4" scope="col">Durum</th>
+
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.DiscountID</td>
-                                        <td>@item.Title</td>
-                                        <td>@item.Amout</td>
-                                        <td>@item.Description</td>
-                                        <td>@item.ImageUrl</td>
+                                        <th>% @item.Amout</th>
+                                        <td><img style="width:200px; height:200px" src="@item.ImageUrl" /></td>
+                                        <td>@(item.status == true ? "Aktif" :"Pasif")</td>
+
                                         <td><a class="btn btn-outline-danger" href="/Discount/DeleteDiscount/@item.DiscountID">Sil</a></td>
                                         <td><a class="btn btn-outline-success" href="/Discount/UpdateDiscount/@item.DiscountID">Güncelle</a></td>
+                                        <td><a class="btn btn-outline-dark" href="/Discount/UpdateToTrue/@item.DiscountID">Aktif</a></td>
+                                        <td><a class="btn btn-outline-warning" href="/Discount/UpdateToFalse/@item.DiscountID">Pasif</a></td>
                                     </tr>
                                 }
 

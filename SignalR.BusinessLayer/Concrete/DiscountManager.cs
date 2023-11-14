@@ -18,6 +18,16 @@ namespace SignalR.BusinessLayer.Concrete
             _IDiscountDal = ıDiscountDal;
         }
 
+        public void TChangeStatusToFalse(int id)
+        {
+            _IDiscountDal.ChangeStatusToFalse(id);
+        }
+
+        public void TChangeStatusToTrue(int id)
+        {
+            _IDiscountDal.ChangeStatusToTrue(id);
+        }
+
         public void TDelete(Discount t)
         {
             _IDiscountDal.Delete(t);
@@ -31,6 +41,11 @@ namespace SignalR.BusinessLayer.Concrete
         public List<Discount> TGetList()
         {
             return _IDiscountDal.GetList();
+        }
+
+        public List<Discount> TGetListByStatusTrue()
+        {
+            return _IDiscountDal.GetListByStatusTrue();
         }
 
         public void TInsert(Discount t)

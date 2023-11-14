@@ -72,6 +72,9 @@ builder.Services.AddScoped<IBasketDal, EFBasketDal>();
 builder.Services.AddScoped<INotificationService, NotificationManager>();
 builder.Services.AddScoped<INotificationDal, EFNotificationDal>();
 
+builder.Services.AddScoped<IMessageService, MessagesManager>();
+builder.Services.AddScoped<IMessageDal, EFMessagesDal>();
+
 
 builder.Services.AddControllersWithViews().AddJsonOptions(opts =>
     opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);

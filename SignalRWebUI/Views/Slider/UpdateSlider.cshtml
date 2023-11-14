@@ -1,4 +1,4 @@
-﻿@model CreateFeatureDto
+﻿@model UpdateSliderDto
 @{
     ViewData["Title"] = "CreateCategory";
     Layout = "~/Views/Admin/Index.cshtml";
@@ -38,9 +38,12 @@
                                 <label for="Description3">3.Açıklama</label>
                                 <input type="text" class="form-control" asp-for="Description3" id="Description3">
                             </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" asp-for="SliderID" >
+                            </div>
                         </div>
                         <div class="card-action">
-                            <button class="btn btn-success">Ekle</button>
+                            <button class="btn btn-success">Güncelle</button>
                         </div>
                     </div>
                 </form>

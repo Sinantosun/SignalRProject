@@ -20,12 +20,12 @@ namespace SignalR.BusinessLayer.Concrete
 
         public void TDelete(Slider t)
         {
-            throw new NotImplementedException();
+            _sliderDal.Delete(t);
         }
 
         public Slider TgetById(int id)
         {
-            throw new NotImplementedException();
+            return _sliderDal.getById(id);
         }
 
         public List<Slider> TGetList()
@@ -35,12 +35,12 @@ namespace SignalR.BusinessLayer.Concrete
 
         public void TInsert(Slider t)
         {
-            throw new NotImplementedException();
+            _sliderDal.Insert(t);
         }
 
         public void TUpdate(Slider t)
         {
-            throw new NotImplementedException();
+            _sliderDal.Update(t);
         }
     }
 }

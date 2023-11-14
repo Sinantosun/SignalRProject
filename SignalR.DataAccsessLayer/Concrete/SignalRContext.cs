@@ -32,5 +32,6 @@ namespace SignalR.DataAccsessLayer.Concrete
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Messages> Messages { get; set; }
     }
 }
