@@ -26,6 +26,7 @@ namespace SignalRApi.Controllers
         {
             Booking booking = new Booking()
             {
+                Description = createBookingDto.Description,
                 Date = createBookingDto.Date,
                 Mail = createBookingDto.Mail,
                 Name = createBookingDto.Name,
@@ -62,6 +63,19 @@ namespace SignalRApi.Controllers
             var removeId = _IBookingService.TgetById(id);
             _IBookingService.TDelete(removeId);
             return Ok("Silme İşlemi Başarılı.");
+        }
+
+        [HttpGet("BookingStatusApprov/{id}")]
+        public IActionResult BookingStatusApprov(int id)
+        {
+           _IBookingService.TbookingStatusDescriptionApprove(id);
+            return Ok();
+        }
+        [HttpGet("BookingStatusCancel/{id}")]
+        public IActionResult BookingStatusCancel(int id)
+        {
+            _IBookingService.TbookingStatusDescriptionCancel(id);
+            return Ok();
         }
     }
 }

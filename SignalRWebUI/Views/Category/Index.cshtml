@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/Index.cshtml";
+    int count = 0;
 }
 
 <div class="content">
@@ -16,7 +17,9 @@
                     <div class="card-body">
                         <div class="card-sub">
                             Kategori İle İlgili İşlemleri Aşağıdan Gerçekleştirebilirsiniz.
-                        </div>
+                        </div><br />
+                        <a href="/Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
+                        <br />
                         <table class="table mt-3">
                             <thead>
                                 <tr>
@@ -30,8 +33,9 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    count++;
                                     <tr>
-                                        <td>@item.CategoryID</td>
+                                        <td>@count</td>
                                         <td>@item.CategoryName</td>
                                         <td>@(item.Status == true ? "Aktif" : "Pasif")</td>
                                         <td><a class="btn btn-outline-danger" href="/Category/DeleteCategory/@item.CategoryID">Sil</a></td>
@@ -41,7 +45,7 @@
 
                             </tbody>
                         </table>
-                        <a href="/Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
+                       
                     </div>
                 </div>
             </div>

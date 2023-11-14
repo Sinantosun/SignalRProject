@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/Index.cshtml";
+    int count = 0;
+
 }
 
 <div class="content">
@@ -17,6 +19,9 @@
                         <div class="card-sub">
                             Ürün İle İlgili İşlemleri Aşağıdan Gerçekleştirebilirsiniz.
                         </div>
+                        <br />
+                        <a href="/Product/CreateProduct" class="btn btn-outline-primary">Yeni Ürün Girişi</a>
+                        <br />
                         <table class="table mt-3">
                             <thead>
                                 <tr>
@@ -32,8 +37,9 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    count++;
                                     <tr>
-                                        <td>@item.ProductID</td>
+                                        <td>@count</td>
                                         <td>@item.ProductName</td>
                                         <td>@item.Price</td>
                                         <td>@item.CategoryName</td>
@@ -45,7 +51,7 @@
 
                             </tbody>
                         </table>
-                        <a href="/Product/CreateProduct" class="btn btn-outline-primary">Yeni Ürün Girişi</a>
+                      
                     </div>
                 </div>
             </div>

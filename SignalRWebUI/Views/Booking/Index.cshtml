@@ -5,8 +5,8 @@
     int count = 0;
 }
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/sweetalert2.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 
 <div class="content">
@@ -25,29 +25,32 @@
 
                 connection.on("ReciveBookingList", (value) => {
                     let tableHtml = `
-                                <table class="table mt-3">
-                                <thead>
-                                 <tr>
-                                 <th scope="col">#</th>
-                                 <th scope="col">Ad Soyad</th>
-                                 <th scope="col">Telefon</th>
-                                 <th scope="col">Kişi Sayısı</th>
-                                 <th scope="col">Rezarvasyon Durumu</th>
-                                 <th scope="col">Sil</th>
-                                 <th scope="col">Güncelle</th>
-                                 </tr>
-                                </thead>
-                                <tbody>`
+                                            <table class="table mt-3">
+                                            <thead>
+                                             <tr>
+                                             <th scope="col">#</th>
+                                             <th scope="col">Ad Soyad</th>
+                                             <th scope="col">Telefon</th>
+                                             <th scope="col">Kişi Sayısı</th>
+                                             <th scope="col">Rezarvasyon Durumu</th>
+                                             <th scope="col">Sil</th>
+                                             <th scope="col">Güncelle</th>
+                                             <th class="text-center" colspan="2" scope="col">Durum</th>
+                                             </tr>
+                                            </thead>
+                                            <tbody>`
                     $.each(value, (index, item) => {
                         tableHtml += `<tr>
-                                 <td>${item.bookingID}</td>
-                                 <td>${item.name}</td>
-                                 <td>${item.phone}</td>
-                                 <td>${item.personCount}</td>
-                                 <td>${"Rezarvasyon Alınıdı"}</td>
-                                 <td><a class="btn btn-outline-danger" href="/Booking/DeleteBooking/${item.bookingID}">Sil</a></td>
-                                 <td><a class="btn btn-outline-success" href="/Booking/UpdateBooking/${item.bookingID}">Güncelle</a></td>
-                                 </tr>`
+                                             <th>${index + 1}</th>
+                                             <td>${item.name}</td>
+                                             <td>${item.phone}</td>
+                                             <td>${item.personCount}</td>
+                                             <td>${item.description}</td>
+                                             <td><a class="btn btn-outline-danger" href="/Booking/DeleteBooking/${item.bookingID}">Sil</a></td>
+                                             <td><a class="btn btn-outline-success" href="/Booking/UpdateBooking/${item.bookingID}">Güncelle</a></td>
+                                             <td><a class="btn btn-outline-dark" href="/Booking/ApproveBooking/${item.bookingID}">Onayla</a></td>
+                                                         <td><a class="btn btn-outline-info" href="/Booking/ApproveCancel/${item.bookingID}">İptal Et</a></td>
+                                             </tr>`
 
                     });
                     tableHtml += "</tbody></table>"
@@ -68,8 +71,12 @@
                         <div class="card-sub">
                             Rezarvasyon İle İlgili İşlemleri Aşağıdan Gerçekleştirebilirsiniz.
                         </div>
-                        <div id="bookingList"></div>
+                        <br />
                         <a href="/Booking/CreateBooking" class="btn btn-outline-primary">Yeni Rezervasyon Girişi</a>
+
+                        <br />
+                        <div id="bookingList"></div>
+
                     </div>
                 </div>
             </div>
