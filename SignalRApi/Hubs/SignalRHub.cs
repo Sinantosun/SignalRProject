@@ -88,6 +88,18 @@ namespace SignalRApi.Hubs
 
             var MenuActive = _menuTableService.TMenuTableCount();
             await Clients.All.SendAsync("ReciveMenuActive", MenuActive);
+
+            var ProductPriceAvg = _productService.TProductPriceAvg();
+            await Clients.All.SendAsync("ReciveProductAvgPriceProggres", ProductPriceAvg);
+
+            var ProductMamburgerAvg = _productService.TAvgProductPriceByHambuger();
+            await Clients.All.SendAsync("ReciveHamurgerAvgProggres", ProductMamburgerAvg);
+
+            var DrinkCount = _productService.TProductCountByCategoryNameDrink();
+            await Clients.All.SendAsync("ReciveDrinkCountProggres", DrinkCount);
+
+            var GetRateForMenuTables = _menuTableService.TTableRateToAll();
+            await Clients.All.SendAsync("ReciveMenuTablesRateProggres", GetRateForMenuTables);
         }
 
         public async Task GetBookingList()

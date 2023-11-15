@@ -10,5 +10,6 @@ namespace SignalR.DataAccsessLayer.Abstract
     public interface IMenuTableDal:IGenericDal<MenuTable>
     {
         int MenuTableCount();
+        decimal TableRateToAll();
     }
 }

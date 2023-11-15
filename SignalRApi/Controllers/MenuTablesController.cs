@@ -60,5 +60,12 @@ namespace SignalRApi.Controllers
             var value = _menuTableService.TgetById(id);
             return Ok(value);
         }
+
+        [HttpGet("GetMenuTableToRate")]
+        public IActionResult GetMenuTableToRate()
+        {
+            var value = _menuTableService.TTableRateToAll();
+            return Ok(value);
+        }
     }
 }

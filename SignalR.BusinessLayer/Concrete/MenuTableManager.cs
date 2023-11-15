@@ -43,6 +43,11 @@ namespace SignalR.BusinessLayer.Concrete
             return _menuTableDal.MenuTableCount();
         }
 
+        public decimal TTableRateToAll()
+        {
+            return _menuTableDal.TableRateToAll();
+        }
+
         public void TUpdate(MenuTable t)
         {
             _menuTableDal.Update(t);

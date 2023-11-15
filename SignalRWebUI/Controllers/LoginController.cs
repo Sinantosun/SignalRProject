@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.EntityLayer.Entities;
 using SignalRWebUI.Dtos.IdentityDtos;
 
 namespace SignalRWebUI.Controllers
 {
-	public class LoginController : Controller
+    [AllowAnonymous]
+    public class LoginController : Controller
 	{
 		private readonly SignInManager<AppUser> _signInManager;
 
@@ -13,6 +15,7 @@ namespace SignalRWebUI.Controllers
 		{
 			_signInManager = signInManager;
 		}
+		
 		[HttpGet]
 		public IActionResult Index()
 		{
@@ -28,5 +31,13 @@ namespace SignalRWebUI.Controllers
 			}
 			return View();
 		}
-	}
+
+
+       
+        public async Task<IActionResult> Logout()
+        {
+			await _signInManager.SignOutAsync();
+            return RedirectToAction("Index","Login");
+        }
+    }
 }
