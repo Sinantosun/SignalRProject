@@ -30,14 +30,6 @@ namespace SignalRApi.Controllers
             var values = _mapper.Map<About>(createAboutDto);
             _IAboutService.TInsert(values);
 
-            //About about = new About()
-            //{
-            //    Title = createAboutDto.Title,
-            //    Description = createAboutDto.Description,
-            //    ImageUrl = createAboutDto.ImageUrl,
-            //};
-
-
             return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
         }
         [HttpDelete("{id}")]

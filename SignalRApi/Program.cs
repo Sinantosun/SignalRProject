@@ -20,10 +20,8 @@ builder.Services.AddCors(opt =>
     });
 });
 builder.Services.AddSignalR();
-
-builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IAboutDal, EFAboutDal>();
 
