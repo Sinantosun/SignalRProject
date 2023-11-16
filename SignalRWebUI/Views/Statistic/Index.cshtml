@@ -46,7 +46,7 @@
                 });
 
                 connection.on("ReciveAvgProduct", (value) => {
-                    $("#AvgCount").text(value);
+                    $("#AvgCount").text(value + " ₺");
                 });
 
                 connection.on("ReciveExpensivePrdouct", (value) => {
@@ -58,7 +58,7 @@
                 });
 
                 connection.on("ReciveHamburgerPrice", (value) => {
-                    $("#HamburgerPrice").text(value);
+                    $("#HamburgerPrice").text(value + " ₺") ;
                 });
 
                 connection.on("ReciveTotelOrder", (value) => {
@@ -70,15 +70,15 @@
                 });
 
                 connection.on("ReciveLastOrder", (value) => {
-                    $("#LastOrder").text(value);
+                    $("#LastOrder").text(value + " ₺");
                 });
 
                 connection.on("ReciveMoneyCase", (value) => {
-                    $("#MoneyCase").text(value);
+                    $("#MoneyCase").text(value + " ₺");
                 });
 
                 connection.on("ReciveTodayProfit", (value) => {
-                    $("#TodayProfit").text(value);
+                    $("#TodayProfit").text(value + " ₺");
                 });
 
                 connection.on("ReciveTableCount", (value) => {

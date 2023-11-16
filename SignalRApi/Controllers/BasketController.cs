@@ -78,7 +78,12 @@ namespace SignalRApi.Controllers
 
             decimal result = (masaTableTotalPrice * getCoupun) / 100;
 
-            return Ok(masaTableTotalPrice - result);
+            ResultBasketWithCoupon resultBasketWithCoupon = new ResultBasketWithCoupon();
+            resultBasketWithCoupon.DiscountAmount = getCoupun;
+            resultBasketWithCoupon.TotalPrice = masaTableTotalPrice - result;
+            resultBasketWithCoupon.DiscountPrice = result;
+
+            return Ok(resultBasketWithCoupon);
         }
     }
 }

@@ -46,7 +46,7 @@
                     </thead>
                     @foreach (var item in Model)
                     {
-                       
+
                         tax = basketTotalPrice / 100 * 10;
                         basketTotatlPriceWithTax = basketTotalPrice + tax;
 
@@ -85,9 +85,9 @@
                             <h6 id="kdv" class="font-weight-medium">@tax.ToString("C2") </h6>
                         </div>
 
-                        <div  id="kdvdiv"  style="display:none">
+                        <div id="kdvdiv" style="display:none">
                             <h6 class="font-weight-medium" id="orantxt">İndirim Oranı</h6>
-                            <h6 id="kdv" class="font-weight-medium"> </h6>
+                            <h6 id="totalDiscount" class="font-weight-medium"> </h6>
                         </div>
 
                         <br />
@@ -109,7 +109,7 @@
     @await Component.InvokeAsync("_UIFooterComponentPartial")
 
     @await Component.InvokeAsync("_UIScriptComponentPartial")
-
+    Amount
 
     <script>
         $(function () {
@@ -124,11 +124,16 @@
                     data: { 'title': couponcodetxt },
                     contentType: 'json',
                     success: function (data) {
-                        totalpricewithkdv.innerText = data + " ₺";
-                        //kdvdiv
+                 
+                        totalpricewithkdv.innerText = data.totalPrice + " ₺";
+
                         var kdvdiv = document.getElementById("kdvdiv");
                         var orantxt = document.getElementById("orantxt");
-                        orantxt.innerText = "İndirim Kuponu Kulanıldı.";
+                        var totalDiscount = document.getElementById("totalDiscount");
+
+                        orantxt.innerText = data.discountAmount + "% İndirim Kuponu Kulanıldı.";
+                        totalDiscount.innerText = "-"+data.discountPrice + "₺";
+
                         kdvdiv.style.display = "block";
                         kdvdiv.classList.add("d-flex");
                         kdvdiv.classList.add("justify-content-between");

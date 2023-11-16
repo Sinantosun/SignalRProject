@@ -7,7 +7,6 @@ using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
-    [AllowAnonymous]
     public class BasketsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -48,8 +47,9 @@ namespace SignalRWebUI.Controllers
             if (responMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject(jsonData);
-                return Json(values);
+                var couponResponse = JsonConvert.DeserializeObject<ResultBasketWithCoupon>(jsonData);
+
+                return Json(couponResponse); 
             }
             return Json("0");
         }
