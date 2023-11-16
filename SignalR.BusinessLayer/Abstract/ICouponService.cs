@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace SignalR.BusinessLayer.Abstract
 {
-    public interface IBasketService : IGenericService<Basket>
-    {
-        List<Basket> TgetBasketByMenuTableNumber(int id);
 
-        decimal TSetCouponCode(string couponName);
-        decimal TBasketSum();
+    public interface ICouponService : IGenericService<CouponCode>
+    {
+
     }
 }

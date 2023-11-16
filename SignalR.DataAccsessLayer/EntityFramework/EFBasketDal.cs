@@ -17,11 +17,24 @@ namespace SignalR.DataAccsessLayer.EntityFramework
         {
         }
 
+        public decimal BasketSum()
+        {
+            using var context = new SignalRContext();
+            return context.Baskets.Sum(x => x.TotalPrice);
+        }
+
         public List<Basket> getBasketByMenuTableNumber(int id)
         {
             using var context = new SignalRContext();
             var values = context.Baskets.Where(x => x.MenuTableID == id).Include(y => y.Product).ToList();
             return values;
+        }
+
+        public decimal SetCouponCode(string couponName)
+        {
+            using var context = new SignalRContext();
+            return context.couponCodes.Where(x => x.Title == couponName).Select(y => y.Amout).FirstOrDefault();
+
         }
     }
 }

@@ -18,9 +18,9 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responMessage = await client.GetAsync("https://localhost:7189/api/Product");
+            var responMessage = await client.GetAsync("https://localhost:7189/api/Product/ProductListWithCategory");
             var jsonData = await responMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultProductWithCategory>>(jsonData);
             return View(values);
         }
         [HttpPost]
@@ -39,5 +39,6 @@ namespace SignalRWebUI.Controllers
             return Json(createBasketDto);
 
         }
+
     }
 }

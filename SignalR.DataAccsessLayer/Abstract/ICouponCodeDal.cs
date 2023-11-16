@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalR.DataAccsessLayer.Abstract
 {
-    public interface IBasketDal : IGenericDal<Basket>
+    public interface ICouponCodeDal:IGenericDal<CouponCode>
     {
-        List<Basket> getBasketByMenuTableNumber(int id);
-
-        decimal SetCouponCode(string couponName);
-
-        decimal BasketSum();
     }
 }

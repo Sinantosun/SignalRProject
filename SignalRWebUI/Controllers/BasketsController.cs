@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SignalRWebUI.Dtos.BasketDtos;
+using SignalRWebUI.Dtos.CouponCodeDto;
 using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
+    [AllowAnonymous]
     public class BasketsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -17,7 +20,7 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responMessage = await client.GetAsync("https://localhost:7189/api/Basket/BasketListByMenuTableWithProductsName?id=4");
+            var responMessage = await client.GetAsync("https://localhost:7189/api/Basket/BasketListByMenuTableWithProductsName?id=20");
             if (responMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responMessage.Content.ReadAsStringAsync();
@@ -37,6 +40,19 @@ namespace SignalRWebUI.Controllers
             return NoContent();
         }
 
+
+        public async Task<JsonResult> CouponCodeApprove(string title)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responMessage = await client.GetAsync($"https://localhost:7189/api/Basket/20,{title}");
+            if (responMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject(jsonData);
+                return Json(values);
+            }
+            return Json("0");
+        }
 
     }
 }

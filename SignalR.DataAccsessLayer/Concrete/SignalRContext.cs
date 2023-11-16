@@ -33,5 +33,6 @@ namespace SignalR.DataAccsessLayer.Concrete
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Messages> Messages { get; set; }
+        public DbSet<CouponCode> couponCodes { get; set; }
     }
 }

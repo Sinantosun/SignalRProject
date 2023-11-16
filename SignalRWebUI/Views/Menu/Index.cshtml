@@ -1,4 +1,4 @@
-﻿@model List<ResultProductDto>
+﻿@model List<ResultProductWithCategory>
 @{
     Layout = null;
 }
@@ -22,18 +22,16 @@
 
             <ul class="filters_menu">
                 <li class="active" data-filter="*">Tüm Ürünler</li>
-                <li data-filter=".burger">Hamburger</li>
-                <li data-filter=".pizza">Makarna</li>
-                <li data-filter=".pasta">Salatalar</li>
-                <li data-filter=".fries">Kızartmalar</li>
-                <li data-filter=".fries">Tatılılar</li>
+                <li data-filter=".Hamburger">Hamburger</li>
+                <li data-filter=".Makarna">Makarna</li>
+                <li data-filter=".Kızartma">Kızartmalar</li>
             </ul>
 
             <div class="filters-content">
                 <div class="row grid">
                     @foreach (var item in Model)
                     {
-                        <div class="col-sm-6 col-lg-4 all pizza">
+                        <div class="col-sm-6 col-lg-4 all @item.CategoryName">
                             <div class="box">
                                 <div>
                                     <div class="img-box">

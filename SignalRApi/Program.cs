@@ -75,6 +75,9 @@ builder.Services.AddScoped<INotificationDal, EFNotificationDal>();
 builder.Services.AddScoped<IMessageService, MessagesManager>();
 builder.Services.AddScoped<IMessageDal, EFMessagesDal>();
 
+builder.Services.AddScoped<ICouponService, CouponManager>();
+builder.Services.AddScoped<ICouponCodeDal, EFCouponDal>();
+
 
 builder.Services.AddControllersWithViews().AddJsonOptions(opts =>
     opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);

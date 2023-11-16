@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SignalR.BusinessLayer.Abstract;
 using SignalR.DataAccsessLayer.Concrete;
 using SignalR.DtoLayer.BasketDto;
+using SignalR.DtoLayer.CouponCodeDto;
 using SignalR.EntityLayer.Entities;
 using SignalRApi.Models;
 
@@ -14,10 +15,12 @@ namespace SignalRApi.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketService _basketService;
+        private readonly ICouponService _couponService;
 
-        public BasketController(IBasketService basketService)
+        public BasketController(IBasketService basketService, ICouponService couponService)
         {
             _basketService = basketService;
+            _couponService = couponService;
         }
         [HttpGet]
         public IActionResult getByBasketMenuTaleID(int id)
@@ -51,7 +54,7 @@ namespace SignalRApi.Controllers
             {
                 ProductID = createBasketDto.ProductID,
                 Count = 1,
-                MenuTableID = 4,
+                MenuTableID = 20,
                 ProductPrice = context.Products.Where(x => x.ProductID == createBasketDto.ProductID).Select(y => y.Price).FirstOrDefault(),
                 TotalPrice = 0,
 
@@ -65,6 +68,17 @@ namespace SignalRApi.Controllers
             var remove = _basketService.TgetById(id);
             _basketService.TDelete(remove);
             return Ok();
+        }
+
+        [HttpGet("{id},{coupun}")]
+        public IActionResult SetCouponCode(int id, string coupun)//masanın idsi tutuluyor.
+        {
+            decimal getCoupun = _basketService.TSetCouponCode(coupun);
+            decimal masaTableTotalPrice = _basketService.TgetBasketByMenuTableNumber(id).Sum(y => y.TotalPrice);
+
+            decimal result = (masaTableTotalPrice * getCoupun) / 100;
+
+            return Ok(masaTableTotalPrice - result);
         }
     }
 }

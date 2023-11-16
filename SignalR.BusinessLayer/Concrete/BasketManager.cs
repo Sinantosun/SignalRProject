@@ -18,6 +18,11 @@ namespace SignalR.BusinessLayer.Concrete
             _basketDal = basketDal;
         }
 
+        public decimal TBasketSum()
+        {
+           return _basketDal.BasketSum();
+        }
+
         public void TDelete(Basket t)
         {
             _basketDal.Delete(t);
@@ -35,12 +40,17 @@ namespace SignalR.BusinessLayer.Concrete
 
         public List<Basket> TGetList()
         {
-            throw new NotImplementedException();
+            return _basketDal.GetList();
         }
 
         public void TInsert(Basket t)
         {
             _basketDal.Insert(t);
+        }
+
+        public decimal TSetCouponCode(string couponName)
+        {
+            return _basketDal.SetCouponCode(couponName);
         }
 
         public void TUpdate(Basket t)
