@@ -3,7 +3,6 @@ using SignalR.BusinessLayer.Concrete;
 using SignalR.DataAccsessLayer.Abstract;
 using SignalR.DataAccsessLayer.Concrete;
 using SignalR.DataAccsessLayer.EntityFramework;
-using SignalR.EntityLayer.Entities;
 using SignalRApi.Hubs;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -20,8 +19,10 @@ builder.Services.AddCors(opt =>
     });
 });
 builder.Services.AddSignalR();
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<SignalRContext>();
+
 builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IAboutDal, EFAboutDal>();
 

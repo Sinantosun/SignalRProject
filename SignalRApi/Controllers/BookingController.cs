@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstract;
 using SignalR.DtoLayer.BookingDto;
 using SignalR.EntityLayer.Entities;
@@ -38,7 +37,7 @@ namespace SignalRApi.Controllers
         }
         [HttpPut]
         public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
-        {
+        {;
             Booking booking = new Booking()
             {
                 BookingID = updateBookingDto.BookingID,
@@ -68,7 +67,7 @@ namespace SignalRApi.Controllers
         [HttpGet("BookingStatusApprov/{id}")]
         public IActionResult BookingStatusApprov(int id)
         {
-           _IBookingService.TbookingStatusDescriptionApprove(id);
+            _IBookingService.TbookingStatusDescriptionApprove(id);
             return Ok();
         }
         [HttpGet("BookingStatusCancel/{id}")]

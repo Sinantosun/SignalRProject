@@ -15,7 +15,7 @@ namespace SignalRApi.Hubs
         private readonly IBookingService _bookingService;
         private readonly INotificationService _notificationService;
 
-        public static int clientCount { get;set;} = 0;
+        public static int clientCount { get; set; } = 0;
 
         public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INotificationService notificationService)
         {

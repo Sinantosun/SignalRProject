@@ -13,7 +13,7 @@ var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticat
 
 builder.Services.AddControllersWithViews(opt =>
 {
-    opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+    
 });
 
 builder.Services.ConfigureApplicationCookie(opts => { opts.LoginPath = "/Login/Index"; });

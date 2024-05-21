@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using ZXing;
+using ZXing.Windows.Compatibility;
 
 namespace SignalRWebUI.Controllers
 {
@@ -29,6 +32,17 @@ namespace SignalRWebUI.Controllers
 
             }
             return View();
+        }
+
+        public JsonResult IndexJson(string image)
+        {
+            var barcodeReader = new BarcodeReader();
+            var BarcodeBitmap = (Bitmap)Bitmap.FromFile(image);
+            var Result = barcodeReader.Decode(BarcodeBitmap);
+            ViewBag.Barcode = Result.Text.ToString();
+            ViewBag.BarcodeUrl = image;
+
+            return Json("");
         }
 
     }

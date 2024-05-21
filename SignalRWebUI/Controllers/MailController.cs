@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using SignalRWebUI.Dtos.MailDtos;
-using SignalRWebUI.Dtos.MessagesDto;
 
 namespace SignalRWebUI.Controllers
 {
@@ -28,7 +27,7 @@ namespace SignalRWebUI.Controllers
             mimeMessage.Subject = createMessagesDto.Subject;
             SmtpClient client = new SmtpClient();
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("aspnetcoreprojeler@gmail.com", "pirm hmfv ugxr rcwq");
+            client.Authenticate("", "");
             client.Send(mimeMessage);
             client.Disconnect(true);
             //pirm hmfv ugxr rcwq

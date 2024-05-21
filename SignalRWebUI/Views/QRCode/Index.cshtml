@@ -3,8 +3,7 @@
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-
-
+<script src="~/js/qrcode.js"></script>
 
 <div class="content">
     <div class="container-fluid">
@@ -15,14 +14,15 @@
                 <form method="post" asp-action="Index" asp-controller="QRCode">
                     <input type="text" name="value" class="form-control" /><br />
                     <input type="submit" value="Oluştur" class="btn btn-success" /><br /><br />
-                    <br />   <br />
-                    @if (ViewBag.QRCodeImage != null)
-                    {
-                        <img src="@ViewBag.QRCodeImage" alt="" style="width:400px; height:400px" />
-                    }
+                    <br />   
                 </form>
-             
-               
+
+                @if (ViewBag.QRCodeImage != null)
+                {
+                        <img src="@ViewBag.QRCodeImage"  class="image" style="width:400px; height:400px" /><br><br>
+                        <input type="submit" value="Çöz" class="btn btn-danger btnqdecoder" />
+                }
+
 
             </div>
         </div>

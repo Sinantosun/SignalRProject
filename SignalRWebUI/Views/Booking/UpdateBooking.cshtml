@@ -35,6 +35,7 @@
                                 <label for="Date">Rezervasyon Tarihi</label>
                                 <input type="date" class="form-control" asp-for="Date" id="Date">
                             </div>
+                            @Html.AntiForgeryToken()
                             <div class="form-group">
                                 <input type="hidden" class="form-control" asp-for="BookingID">
                             </div>
