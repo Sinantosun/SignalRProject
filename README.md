@@ -4,25 +4,25 @@ Projede backend kısmında APİ kullandık, hem Admin hem UI Tarafında Consume 
 Emekleri için Murat Yücedağ hocamıza çok teşekkür ederim.
 
 Projede Kullanılan Teknolojiler Şu Şekildedir.
-Asp Net Core 6.0
-Asp Net Core API 
-SignalR
-Swagger
-Dto
-N Tier Architecture
-MSSQL
-Html Css Boostrap
-Javascript
-Ajax
-Entiy Framework - Linq
-Sweet Alert
-Sepet İşlemleri
-Rezeravsyon İşlemleri
-Real - Time Uygulamalar
-Real - Time Mesajlaşma
-Real - Time İstatistik
-Real - Time Bildirim
-Mail Gönderme
+Asp Net Core 6.0 <br>
+Asp Net Core API  <br>
+SignalR  <br>
+Swagger <br>
+Dto <br>
+N Tier Architecture <br>
+MSSQL <br>
+Html Css Boostrap <br>
+Javascript <br>
+Ajax <br> 
+Entiy Framework - Linq <br>
+Sweet Alert <br>
+Sepet İşlemleri <br>
+Rezeravsyon İşlemleri <br>
+Real - Time Uygulamalar <br>
+Real - Time Mesajlaşma <br>
+Real - Time İstatistik <br>
+Real - Time Bildirim <br> 
+Mail Gönderme<br>
 
 ![image01](https://github.com/user-attachments/assets/e9d452d6-a1df-4d50-bf6a-7fb6ff228ea1)
 
